@@ -1,0 +1,21 @@
+{
+  "name": "@palette/quiz-logic",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "echo \"lint: no linter configured yet\"",
+    "test": "echo \"test: no tests configured yet\"",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@palette/types": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "rimraf": "^6.0.0"
+  }
+}
