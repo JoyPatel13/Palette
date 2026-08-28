@@ -1,7 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { email } from "zod/v4";
-import ca from "zod/v4/locales/ca.js";
-
 const prisma = new PrismaClient();
 
 async function main() {
