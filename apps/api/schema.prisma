@@ -17,6 +17,7 @@ model User{
     id      String @id @default(uuid())
     email   String @unique
     name    String?
+    password String?
     color_vector Json?
     //[crimson , cobalt , emerald , violet , amber , onyx]
     createdAt   DateTime @default(now())
