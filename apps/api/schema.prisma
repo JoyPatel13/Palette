@@ -1,0 +1,68 @@
+generator client{
+    provider = "prisma-client-js"
+}
+
+datasource db{
+    provider = "postgresql"
+    url= env("DATABASE_URL")
+}
+
+enum SwipeAction {
+    LIKE
+    DISLIKE
+    SUPERLIKE
+}
+
+model User{
+    id      String @id @default(uuid())
+    email   String @unique
+    name    String?
+    color_vector Json?
+    //[crimson , cobalt , emerald , violet , amber , onyx]
+    createdAt   DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+    swipes       Swipe[]
+    quizResults  QuizResult[]
+
+}
+
+model Game{
+    id String @id @default(uuid())
+    rawgId Int @unique
+    title String
+    slug String
+    description String
+    coverImageUrl String
+    tag_vector Json
+    genres Json
+    tags Json
+    releaseDate DateTime?
+    rating Float?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    swipes Swipe[]
+}
+
+model Swipe{
+    id String @id @default(uuid())
+    userId String
+    gameId String
+    action SwipeAction
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    user User @relation(fields : [userId] , references:[id])
+    game Game @relation(fields:[gameId] , references:[id])
+}
+
+model QuizResult{
+    id String @id @default(uuid())
+    userId String
+    answers Json
+    vector Json
+    primaryColor   String
+    secondaryColor String
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+    user           User     @relation(fields: [userId], references: [id])
+}
